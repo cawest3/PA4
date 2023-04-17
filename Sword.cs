@@ -6,7 +6,7 @@ namespace PA4
     {
         public void Attack()
         {
-            System.Console.WriteLine("character using sword attack");;
+            System.Console.WriteLine("character using sword attack");
         }
     }
 }
