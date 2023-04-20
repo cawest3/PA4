@@ -5,8 +5,11 @@ namespace PA4
     {
         public WillTurner()
         {
-            Name = "Will Turner";
-            SetMaxPower();
+            name = "Will Turner";
+            health = 100;
+            int maxPower = SetMaxPower();
+            SetAttackStrength(maxPower);
+            SetDefensivePower(maxPower);
             attackBehavior = new Sword();
         }
     }

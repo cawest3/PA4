@@ -5,9 +5,11 @@ namespace PA4
     {
         public DavyJones()
         {
-            Name = "Davy Jones";
-            SetMaxPower();
-            Health = 100;
+            name = "Davy Jones";
+            health = 100;
+            int maxPower = SetMaxPower();
+            SetAttackStrength(maxPower);
+            SetDefensivePower(maxPower);
             attackBehavior = new CannonFire();
 
         }

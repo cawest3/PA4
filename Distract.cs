@@ -6,7 +6,7 @@ namespace PA4
     {
         public void Attack()
         {
-            System.Console.WriteLine("character using distract attack");
+            System.Console.WriteLine("Jack Sparrow distracts to attack!");
         }
     }
 }

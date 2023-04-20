@@ -6,7 +6,7 @@ namespace PA4
     {
         public void Attack()
         {
-            System.Console.WriteLine("character using cannon fire");
+            System.Console.WriteLine("Davy Jones use cannon fire to attack!");
         }
     }
 }

@@ -5,6 +5,11 @@ namespace PA4
     {
         public JackSparrow()
         {
+            name = "Jack Sparrow";
+            health = 100;
+            int maxPower = SetMaxPower();
+            SetAttackStrength(maxPower);
+            SetDefensivePower(maxPower);
             attackBehavior = new Distract();
         }
     }

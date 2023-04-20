@@ -2,57 +2,99 @@
 using PA4.models;
 using PA4.interfaces;
 
-// plainDuck.Quack();
-// plainDuck.Name = "Caroline";
-
-
 MainGame();
 
-const int MAX = 100;
-const int MIN = 0;
+
 
 static void MainGame()
 {
-        Rules();
-        string player1, player2;
+    string player1, player2;
+    Rules();
+
+    System.Console.WriteLine("Player 1, please select a character:\n");
+    player1 = Console.ReadLine();
+
+    System.Console.WriteLine("Player 2, please select a character:\n");
+    player2 = Console.ReadLine();
+    System.Console.WriteLine("Player 1 selected {0}, and Player 2 selected {1}.\n", player1, player2);
         
-        System.Console.WriteLine(Console.WriteLine);("Player 1, please select a character:");
-        player1 = Console.ReadLine();
 
-        System.Console.WriteLine(Console.WriteLine);("Player 2, please select a character:");
-        player2 = Console.ReadLine();
-
-        System.Console.WriteLine();("Player 1 selected {0}, and Player 2 selected {1}.", player1, player2);
-        System.Console.WriteLine("Here are the stats for the character you chose:\n");
-        if(player1 == "Will Turner")
-        {
-            Character will = new WillTurner();
-            will.attackBehavior.Attack();
-            will.SetMaxPower();
-            
-        }
-        else if(player1 == "Jack Sparrow")
-        {
-            System.Console.WriteLine("inheritance js");
-        }
-        else if(player1 == "Davy Jones")
-        {
-            System.Console.WriteLine("inheritance dj");
-        }
-        else
-        {
-            System.Console.WriteLine("You picked a character that does not exist. Try again");   
-        }
-
-        
+    Attack1(player1);
+    Attack2(player2);
 }
-    
+
 static void Rules()
 {
     System.Console.WriteLine("Welcome to Pirates of the Carribean World's End Game");
     System.Console.WriteLine("*****************************************************");
     System.Console.WriteLine("The rules of the game are as follows:\n 1. This is a 2 player game.\n 2. Each player picks their character.\n 3. The characters will go back and forth attacking and defending until one player's health is zero. ");
-    System.Console.WriteLine("*****************************************************");
+    System.Console.WriteLine("*****************************************************\n");
+}
+
+
+static void Attack1(string player1)
+{
+    
+    if(player1 == "Will Turner")
+    {
+        Character will = new WillTurner();
+        System.Console.WriteLine("*** Player One: Stats for Will Turner ***\n");
+        will.Stats();
+        will.attackBehavior.Attack();
+        will.SetMaxPower();
+    }
+    else if(player1 == "Jack Sparrow")
+    {
+        Character jack = new JackSparrow();
+        System.Console.WriteLine("*** Player One: Stats for Jack Sparrow ***\n");
+        jack.Stats();
+        jack.attackBehavior.Attack();
+        jack.SetMaxPower();
+    }
+    else if(player1 == "Davy Jones")
+    {
+        Character davy = new DavyJones();
+        System.Console.WriteLine("*** Player One: Stats for Davy Jones ***\n");
+        davy.Stats();
+        davy.attackBehavior.Attack();
+        davy.SetMaxPower();
+    }
+    else
+    {
+        System.Console.WriteLine("You picked a character that does not exist. Try again");   
+    }
+}
+
+static void Attack2(string player2)
+{
+    if(player2 == "Will Turner")
+    {
+        Character will = new WillTurner();
+        System.Console.WriteLine("*** Player Two: Stats for Will Turner ***");
+        will.Stats();
+        will.attackBehavior.Attack();
+        will.SetMaxPower();
+    }
+    else if(player2 == "Jack Sparrow")
+    {
+        Character jack = new JackSparrow();
+        System.Console.WriteLine("*** Player Two: Stats for Jack Sparrow ***");
+        jack.Stats();
+        jack.attackBehavior.Attack();
+        jack.SetMaxPower();
+    }
+    else if(player2 == "Davy Jones")
+    {
+        Character davy = new DavyJones();
+        System.Console.WriteLine("*** Player Two: Stats for Davy Jones ***");
+        davy.Stats();
+        davy.attackBehavior.Attack();
+        davy.SetMaxPower();
+    }
+    else
+    {
+        System.Console.WriteLine("You picked a character that does not exist. Try again");   
+    }
 }
 
 

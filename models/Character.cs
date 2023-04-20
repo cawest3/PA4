@@ -3,45 +3,48 @@ namespace PA4.models
 {
     public class Character
     {
-        public string Name {get; set;}
+        public string name {get; set;}
+
         public int SetMaxPower()
         {
             Random ran = new Random();
-            int MaxPower = ran.Next(0,100);
-            return MaxPower;
+            int maxPower = ran.Next(0,100);
+            return maxPower;
+        }
+        public double SetAttackStrength(int maxPower)
+        {
+            Random ran = new Random(maxPower);
+            double attackStrength = ran.Next(0,maxPower);
+            return attackStrength;
         }
         
-        public int Health {get; set;}
-        // public double SetAttackStrength()
-        // {
-        //     Random ran = new Random(MaxPower);
-        //     double AttackStrength = ran.Next(0,MaxPower);
-        //     return AttackStrength;
-        // }
-        public double DefensivePower {get; set;}
-        public string Stats {get; set;}
-
+    public double SetDefensivePower(int maxPower)
+        {
+            Random ran = new Random(maxPower);
+            double attackStrength = ran.Next(0,maxPower);
+            return defensivePower;
+        }
+        public int health {get; set;}
+       
+        public double defensivePower {get; set;}
+        
         public IAttack attackBehavior {get; set;}
         public Character()
         {
             attackBehavior = new CannonFire();
         }
+        public void Stats()
+        {
+            int maxPower = SetMaxPower();
+            double attackStrength = SetAttackStrength(maxPower);
 
-        
+            System.Console.WriteLine("Character's Name: {0}", name);
+            System.Console.WriteLine("Health: {0}", health);
+            System.Console.WriteLine("Maximum Power: {0}", maxPower);
+            System.Console.WriteLine("Attack Strength: {0}", attackStrength);
+            System.Console.WriteLine("Defensive Power: {0}", defensivePower);
+        }
+    
 
-
-
-    //public class Pitcher
-    // {
-    //     public string Name {get;set;}
-    //     public string Team {get;set;}
-    //     public string Throws {get;set;}
-
-    //     public IPitch pitchBehavior {get; set;}
-    //     public Pitcher()
-    //     {
-    //         pitchBehavior = new Fastball();
-    //     }
-    // }
     }
 }
