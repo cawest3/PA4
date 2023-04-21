@@ -4,7 +4,10 @@ namespace PA4.models
     public class Character
     {
         public string name {get; set;}
-
+        public double health {get; set;}
+       
+        public double defensivePower {get; set;}
+        public double attackStrength {get; set;}
         public int SetMaxPower()
         {
             Random ran = new Random();
@@ -24,9 +27,7 @@ namespace PA4.models
             double attackStrength = ran.Next(0,maxPower);
             return defensivePower;
         }
-        public int health {get; set;}
-       
-        public double defensivePower {get; set;}
+    
         
         public IAttack attackBehavior {get; set;}
         public Character()
@@ -37,6 +38,7 @@ namespace PA4.models
         {
             int maxPower = SetMaxPower();
             double attackStrength = SetAttackStrength(maxPower);
+            double defensivePower = SetDefensivePower(maxPower);
 
             System.Console.WriteLine("Character's Name: {0}", name);
             System.Console.WriteLine("Health: {0}", health);

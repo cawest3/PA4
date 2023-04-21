@@ -4,28 +4,6 @@ using PA4.interfaces;
 
 MainGame();
 
-
-
-static void MainGame()
-{
-    string player1, player2;
-    Character characterp1, characterp2;
-    Rules();
-
-
-    System.Console.WriteLine("Player 1, please select a character:\n");
-    player1 = Console.ReadLine();
-    Stats(player1);
-
-    System.Console.WriteLine("Player 2, please select a character:\n");
-    player2 = Console.ReadLine();
-    Stats2(player2);
-
-
-
-    System.Console.WriteLine("Player 1 selected {0}, and Player 2 selected {1}.\n", player1, player2);
-}
-
 static void Rules()
 {
     System.Console.WriteLine("Welcome to Pirates of the Carribean World's End Game");
@@ -35,97 +13,188 @@ static void Rules()
 }
 
 
-static void Stats(string player1)
+static void MainGame()
 {
+    string player1, player2;
+    Character p1Char, p2Char; // declare variables to store each player's selected character
+
+    Rules();
+
+    System.Console.WriteLine("Player 1, please select a character:\n");
+    player1 = Console.ReadLine();
+
+    System.Console.WriteLine("Player 2, please select a character:\n");
+    player2 = Console.ReadLine();
     
-    if(player1 == "Will Turner")
+    p1Char = SelectCharacter(player1);
+    p2Char = SelectCharacter(player2); 
+
+    Console.ReadKey(); //stops to see stats
+
+    // if(p1Char == null || p2Char == null)
+    // {
+    //     System.Console.WriteLine("One or both players selected an invalid character. Game cannot continue.");
+    //     return;
+    // }
+    // alternate attacks until one player's health is zero
+    bool p1Turn = true;
+    while(p1Char.health > 0 && p2Char.health > 0)
     {
-        Character will = new WillTurner();
-        System.Console.WriteLine("*** Player One: Stats for Will Turner ***\n");
-        will.Stats();
+        if(p1Turn)
+        {
+            System.Console.WriteLine("*** Player One's Turn ***");
+            p1Char.attackBehavior.Attack(); // player 1 attacks player 2
+            double damageDealt = (p1Char.attackStrength - p2Char.defensivePower);
+            if (damageDealt < 0) 
+            {
+                damageDealt = 0;
+            }
+            p2Char.health -= damageDealt;
+            System.Console.WriteLine("Health: " + p2Char.health);
+           Console.ReadKey();
+        }
+        else
+        {
+            System.Console.WriteLine("*** Player Two's Turn ***");
+            p2Char.attackBehavior.Attack(); // player 2 attacks player 1
+            double damageDealt = (p2Char.attackStrength - p1Char.defensivePower);
+            if (damageDealt < 0) 
+            {
+                damageDealt = 0;
+            }
+            p1Char.health -= damageDealt;
+            System.Console.WriteLine("Health:" + p1Char.health);
+            Console.ReadKey();
+        }
+
+        p1Turn = !p1Turn; // switch turns
     }
-    else if(player1 == "Jack Sparrow")
+
+    // declare the winner
+    if(p1Char.health > 0)
     {
-        Character jack = new JackSparrow();
-        System.Console.WriteLine("*** Player One: Stats for Jack Sparrow ***\n");
-        jack.Stats();
-        
-    }
-    else if(player1 == "Davy Jones")
-    {
-        Character davy = new DavyJones();
-        System.Console.WriteLine("*** Player One: Stats for Davy Jones ***\n");
-        davy.Stats();
+        System.Console.WriteLine("*** Player One Wins! ***");
     }
     else
     {
-        System.Console.WriteLine("You picked a character that does not exist. Try again"); 
-
+        System.Console.WriteLine("*** Player Two Wins! ***");
     }
 }
 
-static void Stats2(string player2)
+static Character SelectCharacter(string playerName)
 {
-    if(player2 == "Will Turner")
+    Character selectedCharacter = null;
+
+    if(playerName == "Will Turner")
     {
-        Character will = new WillTurner();
-        System.Console.WriteLine("*** Player Two: Stats for Will Turner ***");
-        will.Stats();
+        selectedCharacter = new WillTurner();
+        selectedCharacter.Stats();
     }
-    else if(player2 == "Jack Sparrow")
+    else if(playerName == "Jack Sparrow")
     {
-        Character jack = new JackSparrow();
-        System.Console.WriteLine("*** Player Two: Stats for Jack Sparrow ***");
-        jack.Stats();
+        selectedCharacter = new JackSparrow();
+        selectedCharacter.Stats();
     }
-    else if(player2 == "Davy Jones")
+    else if(playerName == "Davy Jones")
     {
-        Character davy = new DavyJones();
-        System.Console.WriteLine("*** Player Two: Stats for Davy Jones ***");
-        davy.Stats();
+        selectedCharacter = new DavyJones();
+        selectedCharacter.Stats();
     }
     else
     {
         System.Console.WriteLine("You picked a character that does not exist. Try again");   
     }
+
+    return selectedCharacter;
 }
 
 
-
-
-
-
-    // int startHealth = 100;
-    // int amount = startHealth;
-    // bool quitGame = true;  
     
-    // while(amount < MAX && amount > MIN && quitGame)
-    // {
+
+
+    // static void MainGame()
+// {
+//     string player1, player2;
+//     Character characterp1, characterp2;
+//     Rules();
+
+
+//     System.Console.WriteLine("Player 1, please select a character:\n");
+//     player1 = Console.ReadLine();
+//     Stats(player1);
+
+//     System.Console.WriteLine("Player 2, please select a character:\n");
+//     player2 = Console.ReadLine();
+//     Stats2(player2);
+
+//     System.Console.WriteLine("Player 1 selected {0}, and Player 2 selected {1}.\n", player1, player2);
+
+//     AttackSequence();
+// }
+
+// static void AttackSequence()
+// {
+    
+// }
+
+
+// static void Stats(string player1)
+// {
+    
+//     if(player1 == "Will Turner")
+//     {
+//         Character will = new WillTurner();
+//         System.Console.WriteLine("*** Player One: Stats for Will Turner ***\n");
+//         will.Stats();
+//     }
+//     else if(player1 == "Jack Sparrow")
+//     {
+//         Character jack = new JackSparrow();
+//         System.Console.WriteLine("*** Player One: Stats for Jack Sparrow ***\n");
+//         jack.Stats();
         
-        
-    //     string userInput = MainMenu();
-    //     if(userInput == "1")
-    //     {
-    //         System.Console.WriteLine("Player One Choose Your Player:\n 1 Jack Sparrow\n 2 Davy Jones\n 3 Will Turner");
-    //         return Console.ReadLine();
-    //     }
-    //     else if(userInput == "2")
-    //     {
-    //         //second character
-    //     }
-    //     else if(userInput == "3")
-    //     {
-    //        //third character
-    //     }
-    //     // else if(userInput == "4")
-    //     // {
-    //     //     Exit();
-    //     // }
-    //     else
-    //     {
-    //         System.Console.WriteLine("Error! You will now be directed to the Main Menu.");  
-    //     }
-    // }
+//     }
+//     else if(player1 == "Davy Jones")
+//     {
+//         Character davy = new DavyJones();
+//         System.Console.WriteLine("*** Player One: Stats for Davy Jones ***\n");
+//         davy.Stats();
+//     }
+//     else
+//     {
+//         System.Console.WriteLine("You picked a character that does not exist. Try again"); 
+
+//     }
+// }
+
+// static void Stats2(string player2)
+// {
+//     if(player2 == "Will Turner")
+//     {
+//         Character will = new WillTurner();
+//         System.Console.WriteLine("*** Player Two: Stats for Will Turner ***");
+//         will.Stats();
+//     }
+//     else if(player2 == "Jack Sparrow")
+//     {
+//         Character jack = new JackSparrow();
+//         System.Console.WriteLine("*** Player Two: Stats for Jack Sparrow ***");
+//         jack.Stats();
+//     }
+//     else if(player2 == "Davy Jones")
+//     {
+//         Character davy = new DavyJones();
+//         System.Console.WriteLine("*** Player Two: Stats for Davy Jones ***");
+//         davy.Stats();
+//     }
+//     else
+//     {
+//         System.Console.WriteLine("You picked a character that does not exist. Try again");   
+//     }
+// }
+
+
+
 
 
 
