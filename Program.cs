@@ -29,13 +29,15 @@ static void MainGame()
     p1Char = SelectCharacter(player1);
     p2Char = SelectCharacter(player2); 
 
+    System.Console.WriteLine("Press Enter to Begin Attack Sequence");
     Console.ReadKey(); //stops to see stats
+    
 
-    // if(p1Char == null || p2Char == null)
-    // {
-    //     System.Console.WriteLine("One or both players selected an invalid character. Game cannot continue.");
-    //     return;
-    // }
+    if(p1Char == null || p2Char == null)
+    {
+        System.Console.WriteLine("One or both players selected an invalid character. Game cannot continue.");
+        return;
+    }
     // alternate attacks until one player's health is zero
     bool p1Turn = true;
     while(p1Char.health > 0 && p2Char.health > 0)
@@ -50,8 +52,16 @@ static void MainGame()
                 damageDealt = 0;
             }
             p2Char.health -= damageDealt;
-            System.Console.WriteLine("Health: " + p2Char.health);
-           Console.ReadKey();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            System.Console.WriteLine("\n{0}'s New Stats:", p2Char.name);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            System.Console.WriteLine("Damage Dealt: {0}", damageDealt);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Green;
+            System.Console.WriteLine("Health: {0}\n", p2Char.health);
+            Console.ResetColor();
+            Console.ReadKey();
         }
         else
         {
@@ -63,7 +73,15 @@ static void MainGame()
                 damageDealt = 0;
             }
             p1Char.health -= damageDealt;
-            System.Console.WriteLine("Health:" + p1Char.health);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            System.Console.WriteLine("\n{0}'s New Stats:", p1Char.name);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            System.Console.WriteLine("Damage Dealt: {0}", damageDealt);
+            Console.ResetColor();
+            Console.ForegroundColor = ConsoleColor.Green;
+            System.Console.WriteLine("Health: {0}\n", p1Char.health);
+            Console.ResetColor();
             Console.ReadKey();
         }
 
