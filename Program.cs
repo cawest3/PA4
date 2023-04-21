@@ -44,6 +44,7 @@ static void MainGame()
     {
         if(p1Turn)
         {
+            System.Console.WriteLine(p2Char.attackStrength); 
             System.Console.WriteLine("*** Player One's Turn ***");
             p1Char.attackBehavior.Attack(); // player 1 attacks player 2
             double damageDealt = (p1Char.attackStrength - p2Char.defensivePower);
@@ -124,6 +125,7 @@ static Character SelectCharacter(string playerName)
     }
 
     return selectedCharacter;
+    
 }
 
 
